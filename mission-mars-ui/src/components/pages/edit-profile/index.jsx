@@ -2,15 +2,22 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import Card from "react-bootstrap/Card"
 import Accordion from "react-bootstrap/Accordion"
+import {Localizer, LanguageCode, StringCode} from "../../../helpers/localizer"
+
 
 export default class EditProfile extends React.Component {
+  getLocalizedString(languageCode, stringCode)
+  {
+    let localizer = new Localizer();
+    return localizer.getString(languageCode, stringCode)
+  }
+
   render() {
     return (
       <div class="row">
         <div class="col-3"></div>
         <div class="col-6">
           <h1>EditProfile</h1>
-
           <Accordion>
             <Card>
               <Accordion.Toggle as={Card.Header} eventKey="0">
@@ -38,7 +45,7 @@ export default class EditProfile extends React.Component {
             </Card>
             <Card>
               <Accordion.Toggle as={Card.Header} eventKey="3">
-                My basic info
+              {this.getLocalizedString(LanguageCode.ru, StringCode.basicInfo)}
               </Accordion.Toggle>
               <Accordion.Collapse eventKey="3">
                 <Card.Body>Hello! I'm another body</Card.Body>
